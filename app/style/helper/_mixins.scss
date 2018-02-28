@@ -1,0 +1,270 @@
+//---- media question
+$screen-width: (
+        "phone-small":   320px,
+        "phone":         400px,
+        "phone-big":     480px,
+        "phablet":       560px,
+        "phablet-big":   600px,
+        "tablet-small":  640px,
+        "tablet":        768px,
+        "tablet-big":    800px,
+        "desktop-small": 1024px,
+        "desktop":       1248px,
+        "desktop-big":   1440px
+);
+@mixin mq($width, $type: min) {
+  @if map_has_key($screen-width, $width) {
+    $width: map_get($screen-width, $width);
+    @if $type == max {
+      $width: $width - 1px;
+    }
+    @media only screen and (#{$type}-width: $width) {
+      @content;
+    }
+  }
+}
+
+//========== Адаптив по точкам подгоняет размер ===========//
+$breakpoints: (
+        'xs': 320px,
+        's': 480px,
+        'm': 768px,
+        'l': 990px,
+        'xl': 1140px,
+      //'xxl': 1090px
+);
+@mixin media($width) {
+  $width: map_get($breakpoints, $width);
+  $width: $width + 20px;
+  @media(max-width: $width) {
+    @content;
+  }
+  // wrap
+  @mixin wrap($padding) {
+    width: map_get($breakpoints, 'xxl');
+
+    @if map-has-key($breakpoints, 'xl') {
+      @media(max-width: map_get($breakpoints, 'xl') + 20px) {
+        width: map_get($breakpoints, 'l');
+      }
+    }
+
+    @if map-has-key($breakpoints, 'l') {
+      @media(max-width: map_get($breakpoints, 'l') + 20px) {
+        width: map_get($breakpoints, 'm');
+      }
+    }
+
+    @if map-has-key($breakpoints, 'm') {
+      @media(max-width: map_get($breakpoints, 'm') + 20px) {
+        width: map_get($breakpoints, 's');
+      }
+    }
+
+    @if map-has-key($breakpoints, 's') {
+      @media(max-width: map_get($breakpoints, 's') + 20px) {
+        width: map_get($breakpoints, 'xs');
+      }
+    }
+
+    @if map-has-key($breakpoints, 'xs') {
+      @media(max-width: map_get($breakpoints, 'xs') + 20px) {
+        padding-right: $padding;
+        padding-left: $padding;
+        width: 100%
+      }
+    }
+  }
+}
+//===== End of Адаптив по точкам подгоняет размер =========//
+
+//width
+@mixin width ($div, $container: $wrapper){
+  width: ($div)/$container*100%;
+}
+
+@mixin width-inline ($div, $container: $wrapper){
+  width: ($div - 1)/$container*100%;
+}
+
+@mixin cursorfix {
+  &:hover {
+    cursor: default;
+  }
+}
+
+// font size
+@function em($pixels, $context: $base-font-size) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+
+  @return $pixels / $context * 1em;
+}
+
+@function pr($pixels, $context: $wrap) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+
+  @return $pixels / $context * 100%;
+}
+
+@mixin vertical {
+  font-size: 0;
+
+  &:before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    width: 0;
+    height: 100%;
+  }
+}
+
+@mixin counter($var) {
+  counter-reset: $var;
+
+  & > li:before {
+    content: counter($var);
+    counter-increment: $var;
+  }
+}
+
+@mixin justify {
+  text-align: justify;
+  line-height: 0;
+  //font-size: 0;
+  text-justify: newspaper;
+  zoom: 1;
+  text-align-last: justify;
+
+  &:after {
+    content: "";
+    display: inline-block;
+    width: 100%;
+    height: 0;
+    visibility: hidden;
+    overflow: hidden;
+  }
+}
+
+@mixin justify-no($align) {
+  text-align: $align;
+  text-align-last: $align;
+}
+
+@mixin placeholder-color($color) {
+  &:-moz-placeholder,
+  &::-moz-placeholder {
+    color: $color;
+    opacity: 1;
+  }
+
+  &::-webkit-input-placeholder {
+    color: $color;
+  }
+}
+
+@mixin text-overflow {
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin arr($width, $height, $bg, $direction) {
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+
+  @if $direction == t {
+    border-width: 0 ($width / 2 + px) ($height + px) ($width / 2 + px);
+    border-color: transparent transparent $bg transparent;
+  }
+
+  @if $direction == r {
+    border-width: ($height / 2 + px) 0 ($height / 2 + px) ($width + px);
+    border-color: transparent transparent transparent $bg;
+  }
+
+  @if $direction == b {
+    border-width: ($height + px) ($width / 2 + px) 0 ($width / 2 + px);
+    border-color: $bg transparent transparent transparent;
+  }
+
+  @if $direction == l {
+    border-width: ($height / 2 + px) ($width + px) ($height / 2 + px) 0;
+    border-color: transparent $bg transparent transparent;
+  }
+
+  @if $direction == tl {
+    border-width: ($height + px) ($width + px) 0 0;
+    border-color: $bg transparent transparent transparent;
+  }
+
+  @if $direction == tr {
+    border-width: 0 ($width + px) ($height + px) 0;
+    border-color: transparent $bg transparent transparent;
+  }
+
+  @if $direction == br {
+    border-width: 0 0 ($height + px) ($width + px);
+    border-color: transparent transparent $bg transparent;
+  }
+
+  @if $direction == bl {
+    border-width: ($height + px) 0 0 ($width + px);
+    border-color: transparent transparent transparent $bg;
+  }
+}
+
+@mixin font($alias, $name) {
+  @font-face {
+    font-family: $alias;
+    src: url("../fonts/" + $name + ".eot");
+    src: url("../fonts/" + $name + ".eot?#iefix") format("embedded-opentype"), url("../fonts/" + $name + ".woff2") format("woff2"), url("../fonts/" + $name + ".woff?ver1.0") format("woff"), url("../fonts/" + $name + ".ttf") format("truetype"), url("../fonts/" + $name + ".svg#" + $name + "") format("svg");
+
+    @content;
+  }
+}
+
+@mixin clr {
+  &:after {
+    content: " ";
+    display: table;
+    clear: both;
+  }
+  *zoom: 1;
+}
+
+@mixin tr($var) {
+  -webkit-transition: $var;
+  -moz-transition: $var;
+  -o-transition: $var;
+  transition: $var;
+}
+
+@mixin input-placeholder {
+  &.placeholder { @content; }
+  &:-moz-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &:-ms-input-placeholder { @content; }
+  &::-webkit-input-placeholder { @content; }
+}
+
+//обрезка текста
+@mixin truncate($truncation-boundary) {
+  max-width: $truncation-boundary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

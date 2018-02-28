@@ -1,0 +1,22 @@
+{
+  "name": "gulpbuilder",
+  "description": "auto build",
+  "main": "index.js",
+  "authors": [
+    "Dmitdy Lazenyuk"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/Dima0508/gulpBuilder",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "normalize-css": "normalize.css#^7.0.0",
+    "reset.scss": "^1.0.1"
+  }
+}

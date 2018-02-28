@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  &:before, &:after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+}
+
+object {
+  height: 100%;
+  width: 100%;
+}
+
+label.select-none {user-select: none;}
+
+a.svg {
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+  user-select: none;
+  display: inline-block;
+  position: relative;
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+h1 {
+  margin: 0;
+}
+button,
+input{
+  border: none;
+  outline: none;
+}
