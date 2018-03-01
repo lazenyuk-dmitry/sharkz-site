@@ -39,6 +39,21 @@ $(document).ready(function(){
         }
     });
 
+    $(".portfolio-carousel").owlCarousel({
+        loop: false,
+        dots: false,
+        nav: false,
+        arrows: false,
+        margin: 80,
+        items: 2,
+        variableWidth: true,
+        navText: [''],
+        mouseDrag: true,
+        responsive:{
+
+        }
+    });
+
     $(".our_team-display").owlCarousel({
         loop: false,
         dots: false,
