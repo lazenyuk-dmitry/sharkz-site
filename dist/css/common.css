@@ -941,11 +941,11 @@ br.mobile_line-break {
   min-height: 964px;
   padding-top: 215px;
   padding-bottom: 100px;
-  background: url("../images/wave-blue.png") top center no-repeat, #00d4ee -webkit-linear-gradient(315deg, #00e9d4 10%, #00d0f2 90%);
-  background: url("../images/wave-blue.png") top center no-repeat, #00d4ee -o-linear-gradient(315deg, #00e9d4 10%, #00d0f2 90%);
-  background: url("../images/wave-blue.png") top center no-repeat, #00d4ee linear-gradient(135deg, #00e9d4 10%, #00d0f2 90%);
-  -webkit-background-size: contain;
-          background-size: contain; }
+  background-image: url("../images/volna-01.png");
+  background-repeat: no-repeat;
+  background-position: center 5px;
+  -webkit-background-size: cover;
+          background-size: cover; }
 
 .reviews-caption {
   color: #fff; }
@@ -2044,7 +2044,8 @@ body {
 .what-doing {
   margin-top: -400px;
   position: relative;
-  z-index: 20; }
+  z-index: 20;
+  margin-bottom: -500px; }
 
 .services-title {
   text-align: center;
@@ -2061,7 +2062,7 @@ body {
 
 .what-doing__content {
   margin-top: 64px;
-  padding: 60px 90px 150px 90px;
+  padding: 60px 90px 650px 90px;
   background-color: #fff;
   -webkit-border-radius: 23px 23px 0 0;
           border-radius: 23px 23px 0 0; }
@@ -2106,7 +2107,7 @@ body {
       -webkit-transform: scale(1.2);
           -ms-transform: scale(1.2);
               transform: scale(1.2); }
-    .f_screen-items_services .item:hover {
+    .f_screen-items_services .item:hover, .f_screen-items_services .item.active {
       color: #fff;
       -webkit-box-shadow: 0 20px 49px rgba(0, 210, 241, 0.42);
               box-shadow: 0 20px 49px rgba(0, 210, 241, 0.42);
@@ -2116,7 +2117,7 @@ body {
       -webkit-transition: ease-out 0.2s;
       -o-transition: ease-out 0.2s;
       transition: ease-out 0.2s; }
-      .f_screen-items_services .item:hover i {
+      .f_screen-items_services .item:hover i, .f_screen-items_services .item.active i {
         color: #fff;
         -webkit-transition: ease-out 0.4s;
         -o-transition: ease-out 0.4s;
@@ -2176,8 +2177,11 @@ body {
   line-height: 40px;
   border: 1px solid #3bd8f1; }
   .what-doing__s-btn:hover {
-    background: #3bd8f1;
     color: #fff;
+    background: #3bd8f1 -webkit-gradient(linear, left top, right top, from(#01e6d2), to(#3bd8f1));
+    background: #3bd8f1 -webkit-linear-gradient(left, #01e6d2 0%, #3bd8f1 100%);
+    background: #3bd8f1 -o-linear-gradient(left, #01e6d2 0%, #3bd8f1 100%);
+    background: #3bd8f1 linear-gradient(to right, #01e6d2 0%, #3bd8f1 100%);
     -webkit-transition: ease-in 0.3s;
     -o-transition: ease-in 0.3s;
     transition: ease-in 0.3s; }

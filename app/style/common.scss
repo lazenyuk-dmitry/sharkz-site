@@ -19,6 +19,7 @@ body{
   margin-top: -400px;
   position: relative;
   z-index: 20;
+  margin-bottom: -500px;
 }
 
 .services-title{
@@ -37,7 +38,7 @@ body{
 
 .what-doing__content{
   margin-top: 64px;
-  padding: 60px 90px 150px 90px;
+  padding: 60px 90px 650px 90px;
   background-color: #fff;
   border-radius: 23px 23px 0 0;
 }
@@ -79,7 +80,8 @@ body{
       transition: ease-out 0.4s;
       transform: scale(1.2);
     }
-    &:hover{
+    &:hover,
+    &.active{
       color: #fff;
       box-shadow: 0 20px 49px rgba(0, 210, 241, 0.42);
       background-image: linear-gradient(156deg, #00e2dd 0%, #00d2f1 100%);
@@ -157,8 +159,8 @@ body{
   border: 1px solid #3bd8f1;
   //transition: ease-in 0.4s;
   &:hover{
-    background: #3bd8f1;
     color: #fff;
+    background: #3bd8f1 linear-gradient(to right, #01e6d2 0%, #3bd8f1 100%);
     transition: ease-in 0.3s;
   }
 }

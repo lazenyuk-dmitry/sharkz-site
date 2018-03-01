@@ -775,8 +775,15 @@ br.mobile_line-break {
   min-height: 964px;
   padding-top: 215px;
   padding-bottom: 100px;
-  background: url("../images/wave-blue.png") top center no-repeat, #00d4ee linear-gradient(135deg, #00e9d4 10%, #00d0f2 90%);
-  background-size: contain;}
+  background-image: url("../images/volna-01.png");
+  //background-image: url("../images/volna-01.svg"), none;
+  background-repeat: no-repeat;
+  background-position: center 5px;
+  background-size: cover;
+
+  //background: url("../images/wave-blue.png") top center no-repeat, #00d4ee linear-gradient(135deg, #00e9d4 10%, #00d0f2 90%);
+  //background-size: contain;
+}
 
 .reviews-caption {
   color: #fff; }
