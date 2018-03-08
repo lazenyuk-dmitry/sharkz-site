@@ -6,8 +6,23 @@
 @import "old-style";
 
 body{
-  width: 1920px;
+  //width: 1920px;
 }
+
+/*========== Parralax script  ===========*/
+.js-page-top{
+  position: relative;
+  z-index: 2;
+  background: #f7f7f7; // body bg
+}
+.js-page-bottom{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+/*===== End of Parralax script  =========*/
 
 /*========== services ===========*/
 .f_screen_services{

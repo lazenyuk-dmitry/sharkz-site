@@ -124,13 +124,14 @@ body {
   background: #f7f7f7;
   font-family: 'Raleway-Regular', 'Arial', 'Tahoma', sans-serif;
   font-size: 16px;
-  height: 100%;
   position: relative;
   margin: 0;
   line-height: 1;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  min-width: 320px; }
+  min-width: 320px;
+  height: 100% !important;
+}
 
 
 .clearfix:after {

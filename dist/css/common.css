@@ -128,13 +128,13 @@ body {
   background: #f7f7f7;
   font-family: 'Raleway-Regular', 'Arial', 'Tahoma', sans-serif;
   font-size: 16px;
-  height: 100%;
   position: relative;
   margin: 0;
   line-height: 1;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  min-width: 320px; }
+  min-width: 320px;
+  height: 100% !important; }
 
 .clearfix:after {
   *zoom: 1; }
@@ -2033,9 +2033,20 @@ br.mobile_line-break {
 
 /*--==== / Respond Style  ====--*/
 /*# sourceMappingURL=style.css.map */
-body {
-  width: 1920px; }
+/*========== Parralax script  ===========*/
+.js-page-top {
+  position: relative;
+  z-index: 2;
+  background: #f7f7f7; }
 
+.js-page-bottom {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1; }
+
+/*===== End of Parralax script  =========*/
 /*========== services ===========*/
 .f_screen_services {
   height: 350px;

@@ -364,4 +364,43 @@ $(document).ready(function(){
         "waves-button"
     ]);
 
+
+
+    /*============ PRRALAX SCRIPT ==============*/
+    var scrollTop = $(window).scrollTop();
+    var pageTop= $('.js-page-top');
+    var pageBottom= $('.js-page-bottom');
+    var ParralaxScrollStep = 2;
+    $(window).scroll( function () {
+        var scrollSize = (scrollTop - $(window).scrollTop());
+        if(scrollSize < 0){
+            scrollSize = -scrollSize;
+        }
+        var scrollHeight = $(window).height();
+        var pageTopMarginBottom = pageTop.css('margin-bottom');
+
+        if(scrollTop < $(window).scrollTop()){
+            var pageTopPosition = document.querySelector('.js-page-top').getBoundingClientRect();
+            if((pageTopPosition.bottom - 1) <= scrollHeight){
+                if(pageTopPosition.bottom >= 0){
+                    pageTop.css('margin-bottom', scrollHeight + 'px' );
+                }
+                else{
+                    pageBottom.css('position', 'static');
+                    pageTop.css('margin-bottom', 0);
+                }
+            }
+        }
+        else if(scrollTop > $(window).scrollTop()){
+            var pageBottomPosition = document.querySelector('.js-page-bottom').getBoundingClientRect();
+            if(pageBottomPosition.top >= 0 ){
+                pageBottom.css('position', 'fixed');
+                pageTop.css('margin-bottom', scrollHeight + 'px' );
+            }
+        }
+        scrollTop = $(window).scrollTop();
+    })
+
+    /*======= End of PRRALAX SCRIPT ============*/
+
 });
