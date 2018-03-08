@@ -14,6 +14,8 @@ body{
   position: relative;
   z-index: 2;
   background: #f7f7f7; // body bg
+  overflow: hidden;
+  //margin-bottom: 2px;
 }
 .js-page-bottom{
   position: fixed;

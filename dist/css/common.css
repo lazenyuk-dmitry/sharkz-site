@@ -2037,7 +2037,8 @@ br.mobile_line-break {
 .js-page-top {
   position: relative;
   z-index: 2;
-  background: #f7f7f7; }
+  background: #f7f7f7;
+  overflow: hidden; }
 
 .js-page-bottom {
   position: fixed;

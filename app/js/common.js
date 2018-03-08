@@ -367,10 +367,12 @@ $(document).ready(function(){
 
 
     /*============ PRRALAX SCRIPT ==============*/
-    var scrollTop = $(window).scrollTop();
+    var scrollTop = 0;
     var pageTop= $('.js-page-top');
     var pageBottom= $('.js-page-bottom');
     var ParralaxScrollStep = 2;
+    var parralaxScrollAnimation = false;
+    var parralaxScrollAnimationTop = false;
     $(window).scroll( function () {
         var scrollSize = (scrollTop - $(window).scrollTop());
         if(scrollSize < 0){
@@ -378,14 +380,21 @@ $(document).ready(function(){
         }
         var scrollHeight = $(window).height();
         var pageTopMarginBottom = pageTop.css('margin-bottom');
-
+        var pageTopPosition = document.querySelector('.js-page-top').getBoundingClientRect();
         if(scrollTop < $(window).scrollTop()){
-            var pageTopPosition = document.querySelector('.js-page-top').getBoundingClientRect();
             if((pageTopPosition.bottom - 1) <= scrollHeight){
                 if(pageTopPosition.bottom >= 0){
-                    pageTop.css('margin-bottom', scrollHeight + 'px' );
+                    if(parralaxScrollAnimation === false){
+                        parralaxScrollAnimation = true;
+                        parralaxScrollAnimationTop = false;
+                        pageTop.css('margin-bottom', scrollHeight + 'px' );
+                        $('body,html').stop(true).clearQueue().animate({scrollTop: pageBottom.offset().top + scrollHeight}, 800 , function () {
+                            parralaxScrollAnimation = false;
+                        });
+                    }
                 }
-                else{
+                else if(pageTopPosition.bottom <= 0){
+                    $('body,html').stop(true, true);
                     pageBottom.css('position', 'static');
                     pageTop.css('margin-bottom', 0);
                 }
@@ -394,8 +403,20 @@ $(document).ready(function(){
         else if(scrollTop > $(window).scrollTop()){
             var pageBottomPosition = document.querySelector('.js-page-bottom').getBoundingClientRect();
             if(pageBottomPosition.top >= 0 ){
-                pageBottom.css('position', 'fixed');
-                pageTop.css('margin-bottom', scrollHeight + 'px' );
+                if(parralaxScrollAnimation === false && parralaxScrollAnimationTop === false){
+                    pageBottom.css('position', 'fixed');
+                    if(pageTop.css('margin-bottom') === '0px' ){
+                        parralaxScrollAnimation = true;
+                        parralaxScrollAnimationTop = true;
+                        pageTop.css('margin-bottom', scrollHeight + 'px' );
+                        $('body,html').stop(true).clearQueue().animate({scrollTop: pageBottom.offset().top - scrollHeight}, 800 , function () {
+                            parralaxScrollAnimation = false;
+                        });
+                    }
+                    if((pageTopPosition.bottom ) >= scrollHeight){
+                        pageTop.css('margin-bottom', 0 );
+                    }
+                }
             }
         }
         scrollTop = $(window).scrollTop();
