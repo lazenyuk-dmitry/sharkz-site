@@ -370,7 +370,8 @@ $(document).ready(function(){
     var scrollTop = 0;
     var pageTop= $('.js-page-top');
     var pageBottom= $('.js-page-bottom');
-    var ParralaxScrollStep = 2;
+    //var ParralaxScrollStep = 2;
+    var ParralaxTimeAnimation = 500;
     var parralaxScrollAnimation = false;
     var parralaxScrollAnimationTop = false;
     $(window).scroll( function () {
@@ -382,19 +383,18 @@ $(document).ready(function(){
         var pageTopMarginBottom = pageTop.css('margin-bottom');
         var pageTopPosition = document.querySelector('.js-page-top').getBoundingClientRect();
         if(scrollTop < $(window).scrollTop()){
-            if((pageTopPosition.bottom - 1) <= scrollHeight){
-                if(pageTopPosition.bottom >= 0){
-                    if(parralaxScrollAnimation === false){
-                        parralaxScrollAnimation = true;
-                        parralaxScrollAnimationTop = false;
-                        pageTop.css('margin-bottom', scrollHeight + 'px' );
-                        $('body,html').stop(true).clearQueue().animate({scrollTop: pageBottom.offset().top + scrollHeight}, 800 , function () {
-                            parralaxScrollAnimation = false;
-                        });
-                    }
+            if((pageTopPosition.bottom - 1) <= scrollHeight && parralaxScrollAnimation === false){
+                if(pageTopPosition.bottom > 0){
+                    parralaxScrollAnimation = true;
+                    parralaxScrollAnimationTop = false;
+                    pageTop.css('margin-bottom', scrollHeight + 200 + 'px' );
+                    $('body,html').stop(true).clearQueue().animate({scrollTop: pageBottom.offset().top + scrollHeight}, ParralaxTimeAnimation , function () {
+                        parralaxScrollAnimation = false;
+                    });
+                    return false;
                 }
                 else if(pageTopPosition.bottom <= 0){
-                    $('body,html').stop(true, true);
+                    //$('body,html').stop(true, true);
                     pageBottom.css('position', 'static');
                     pageTop.css('margin-bottom', 0);
                 }
@@ -408,13 +408,20 @@ $(document).ready(function(){
                     if(pageTop.css('margin-bottom') === '0px' ){
                         parralaxScrollAnimation = true;
                         parralaxScrollAnimationTop = true;
-                        pageTop.css('margin-bottom', scrollHeight + 'px' );
-                        $('body,html').stop(true).clearQueue().animate({scrollTop: pageBottom.offset().top - scrollHeight}, 800 , function () {
+                        pageTop.css('margin-bottom', scrollHeight +200 + 'px' );
+                        header.css('display', 'none');
+                        $('body,html').stop(true).clearQueue().animate({scrollTop: pageBottom.offset().top - scrollHeight}, ParralaxTimeAnimation , function () {
                             parralaxScrollAnimation = false;
+                            header.css({
+                                'display': 'block',
+                                'top': '-83px',
+                                'position': 'fixed'
+                            });
                         });
+                        return false;
                     }
                     if((pageTopPosition.bottom ) >= scrollHeight){
-                        pageTop.css('margin-bottom', 0 );
+                        pageTop.css('margin-bottom', '200px' );
                     }
                 }
             }
