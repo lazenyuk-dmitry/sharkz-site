@@ -1,5 +1,7 @@
 # Sharkz Site
 
+**[LIVE DEMO](https://lazenyuk-dmitry.github.io/sharkz-site/)**
+
 For build project need `node` version `8.17.0`.
 
 ## Project Setup
