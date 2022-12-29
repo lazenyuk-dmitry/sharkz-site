@@ -1,4 +1,4 @@
-# Sharks Site
+# Sharkz Site
 
 For build project need `node` version `8.17.0`.
 
